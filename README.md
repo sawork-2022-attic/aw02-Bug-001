@@ -35,3 +35,14 @@ Please make the POS system robust and fully functional by implementing more comm
 Implementing a PosDB with real database is very much welcome. 
 
 Please elaborate your understanding in layered systems via this homework in your README.md.
+
+<hr />
+
+Asciinema record is available here: [https://asciinema.org/a/474061](https://asciinema.org/a/474061)
+
+## Understanding in layered systems
+
+Layered design divides a complicated system into different parts, every of which has its own function. A layer communicates with its neighbors by a limited number of interfaces, which is defined as Java `interface` in this demo.
+
+When we change the implementation of any layer, we don't have to consider implementation of other layers, so complexity is significantly reduced. For instance, when adding commands to poshell, we know that interface `PosService` should be able to add item, del item, etc., so we can simply handle return value from `PosService`, and present it to users. `PosService` contains business logic, which is called by upper layer (various commands), and accesses lower-level data by interface `PosDB`. `PosDB` provides functions to access `Cart` and `Product` object, in which product list could be implemented in memory or real database, without affecting upper layer. We can clearly find three-layer design patterns from analysis above: they are Presentation Layer, Business Layer and Data Access Layer, respectively.
+
