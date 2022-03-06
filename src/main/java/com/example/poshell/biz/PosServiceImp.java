@@ -30,13 +30,17 @@ public class PosServiceImp implements PosService {
     }
 
     @Override
-    public void checkout(Cart cart) {
-
+    public double checkout(Cart cart) {
+        if (cart == null) return -1;
+        double payment = this.total(cart);
+        cart.clear();
+        return payment;
     }
 
     @Override
-    public void total(Cart cart) {
-
+    public double total(Cart cart) {
+        if (cart == null) return -1;
+        return cart.total();
     }
 
     @Override

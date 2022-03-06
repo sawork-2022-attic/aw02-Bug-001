@@ -46,4 +46,18 @@ public class Cart {
 
         return stringBuilder.toString();
     }
+
+    public double total() {
+        double total = 0;
+
+        for (int i = 0; i < items.size(); i++) {
+            total += items.get(i).getAmount() * items.get(i).getProduct().getPrice();
+        }
+
+        return total;
+    }
+
+    public void clear() {
+        items.clear();
+    }
 }

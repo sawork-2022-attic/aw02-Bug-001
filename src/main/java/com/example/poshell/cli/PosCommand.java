@@ -55,11 +55,19 @@ public class PosCommand {
         return "Cart cleared";
     }
 
-    @ShellMethod(value = "Delete Item from cart, 0-indexed", key = "del")
+    @ShellMethod(value = "Delete Item from Cart, 0-indexed", key = "del")
     public String deleteItem(int i) {
         if (posService.del(i)) {
             return posService.getCart().toString();
         }
         return "ERROR";
+    }
+
+    @ShellMethod(value = "Pay for Products in Cart", key = "checkout")
+    public String checkout() {
+        double total = posService.checkout(posService.getCart());
+        if (total < 0) return "ERROR";
+        return "Cart Checked-out!" + "\n" +
+                "Your payment: " + total;
     }
 }
