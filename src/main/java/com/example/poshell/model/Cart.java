@@ -11,7 +11,20 @@ public class Cart {
     private List<Item> items = new ArrayList<>();
 
     public boolean addItem(Item item) {
-        return items.add(item);
+        try {
+            return items.add(item);
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    public boolean delItem(int index) {
+        try {
+            items.remove(index);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 
     @Override

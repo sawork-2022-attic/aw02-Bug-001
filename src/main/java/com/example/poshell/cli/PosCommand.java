@@ -54,4 +54,12 @@ public class PosCommand {
         posService.newCart();
         return "Cart cleared";
     }
+
+    @ShellMethod(value = "Delete Item from cart, 0-indexed", key = "del")
+    public String deleteItem(int i) {
+        if (posService.del(i)) {
+            return posService.getCart().toString();
+        }
+        return "ERROR";
+    }
 }
