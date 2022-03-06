@@ -51,7 +51,8 @@ public class PosCommand {
 
     @ShellMethod(value = "Clear Cart", key = "empty")
     public String clearCart() {
-        posService.newCart();
+        if (posService.getCart() == null) return "ERROR";
+        posService.getCart().clear();
         return "Cart cleared";
     }
 
